@@ -27,6 +27,28 @@ const request = require("request");
   let mainPath = url.parse(mainUrl, true).pathname;
   mainPath = `/site${mainPath.slice(0, mainPath.lastIndexOf("/"))}`;
   await createMainPage(mainUrl, mainPath, projectrName);
+  const hostUrl = url.parse(mainUrl, true).hostname;
+
+  const number = await page.$$eval("script", (data) => data.length);
+  let temp = await page.evaluate(() => {
+    return document.getElementsByClassName("script");
+  });
+  console.log(temp);
+  //   for (let i = 0; i < 10; i++) {
+  //     let temp = await page.$$("script")._remoteObject;
+  //     console.log(temp);
+  //   }
+  //   console.log(number, temp);
+  //   let dataArray = [];
+  //   let data = await page.$eval("script", (element) => {
+  //     return dataArray.push(element.src);
+  //   });
+  //   console.log(dataArray);
+  //   for (let i = 0; i < number; i++) {
+  //     let temp = await page.$(`head > script:nth-child(${i})`);
+  //     // let temp = await page.evaluate(() => document.querySelectorAll("script"));
+  //     console.log(temp);
+  //   }
 })();
 
 async function createMainPage(mainUrl, mainPath, projectrName) {
