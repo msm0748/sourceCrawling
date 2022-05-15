@@ -24,7 +24,8 @@ const request = require("request");
   await createMainPage(page, PROJECT_FOLDER_NAME);
   await createScriptFile(page, PROJECT_FOLDER_NAME, mainHostUrl);
   await createCssFile(page, PROJECT_FOLDER_NAME, mainHostUrl);
-  console.log("파일 생성이 완료 되었습니다");
+  console.log("파일 생성이 끝났습니다.");
+  await browser.close();
 })();
 
 async function createMainPage(page, PROJECT_FOLDER_NAME) {
@@ -65,7 +66,7 @@ async function filteringDownload(page, PROJECT_FOLDER_NAME, mainHostUrl, URLs) {
     await createFolder(forderName);
     await page.waitForTimeout(1000);
     await download(URL, fileName, function () {
-      console.log(`${forderName + fileName} 생성 성공`);
+      console.log(`${fileName} 파일 생성 성공`);
     });
     await page.waitForTimeout(1000);
   }
